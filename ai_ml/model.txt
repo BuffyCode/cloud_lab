@@ -1,0 +1,16 @@
+!pip install sagemaker -q
+------------
+import sagemaker
+from sagemaker.sklearn.estimator import SKLearn
+
+role = sagemaker.get_execution_role()
+print(role)
+-----------------
+estimator = SKLearn(
+    entry_point="train.py",
+    role=role,
+    instance_type="ml.m5.large",
+    framework_version="1.2-1"
+)
+---------
+estimator.fit()
